@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sutasoma-snuf: #E3D1ED;
+  --color-sutasoma-jacarta: #2D256B;
+  --color-sutasoma-affair: #814FA4;
+  --color-sutasoma-twine: #C19663;
+}
+
+/* Mengaktifkan manual dark mode melalui class .dark */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Custom Scrollbar agar estetis */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-sutasoma-affair);
+  border-radius: 10px;
+}
