@@ -24,7 +24,7 @@ const App = () => {
   const handleSentenceCase = () => {
     setText(text.toLowerCase().replace(/(^\s*\w|[\.\!\?]\s*\w)/g, c => c.toUpperCase()));
   };
-  
+
   // Title Case PUEBI (Bahasa Indonesia)
   const handleTitleCasePUEBI = () => {
     const exceptions = ['di', 'ke', 'dari', 'dan', 'atau', 'yang', 'untuk', 'dengan', 'dalam', 'pada', 'kepada', 'sebagai', 'tentang', 'terhadap', 'oleh', 'serta'];
@@ -64,12 +64,12 @@ const App = () => {
   return (
     <div className={`${isDarkMode ? 'dark' : ''}`}>
       <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
-        
+
         <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
 
         <main className="flex-grow flex items-center justify-center p-4 sm:p-6 md:p-10 z-10">
           <div className="bg-white dark:bg-gray-950 p-6 md:p-10 rounded-2xl shadow-xl w-full max-w-4xl border border-gray-200 dark:border-gray-800 transition-colors duration-300">
-            
+
             <div className="mb-6 flex items-center gap-3">
               <Sparkles className="text-sutasoma-affair dark:text-sutasoma-twine" size={28} />
               <div>
@@ -100,10 +100,10 @@ const App = () => {
             </div>
 
             <div className="flex justify-between items-center px-1">
-               <button onClick={handleClear} className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 font-semibold transition duration-200 text-sm flex items-center gap-2 active:scale-95">
+              <button onClick={handleClear} className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 font-semibold transition duration-200 text-sm flex items-center gap-2 active:scale-95">
                 <Trash2 size={18} /> <span className="hidden sm:inline">Bersihkan</span>
               </button>
-              
+
               <button onClick={handleCopy} className={`px-4 sm:px-5 py-2.5 rounded-xl transition duration-300 flex items-center text-sm gap-2 font-bold active:scale-95 border ${copied ? 'bg-green-100 text-green-700 border-green-300 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/50' : 'bg-sutasoma-jacarta text-white hover:bg-sutasoma-affair border-transparent dark:bg-sutasoma-twine/10 dark:text-sutasoma-twine dark:border-sutasoma-twine/50 dark:hover:bg-sutasoma-twine dark:hover:text-gray-950'}`}>
                 {copied ? <CheckCheck size={18} /> : <Copy size={18} />}
                 {copied ? 'Tersalin' : 'Copy Text'}
