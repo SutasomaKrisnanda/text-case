@@ -1,23 +1,52 @@
 @import "tailwindcss";
 
-@theme {
-  --color-sutasoma-snuf: #E3D1ED;
-  --color-sutasoma-jacarta: #2D256B;
-  --color-sutasoma-affair: #814FA4;
-  --color-sutasoma-twine: #C19663;
-}
-
-/* Mengaktifkan manual dark mode melalui class .dark */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Custom Scrollbar agar estetis */
-::-webkit-scrollbar {
-  width: 8px;
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-border: hsl(var(--border));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
 }
-::-webkit-scrollbar-track {
-  background: transparent;
+
+@layer base {
+  :root {
+    --background: 210 29% 96%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --primary: 126 29% 74%;
+    --primary-foreground: 145 31% 12%;
+    --accent: 145 31% 42%;
+    --accent-foreground: 0 0% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 20.2% 65.1%;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --primary: 126 29% 74%;
+    --primary-foreground: 145 31% 12%;
+    --accent: 145 31% 42%;
+    --accent-foreground: 0 0% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+  }
 }
-::-webkit-scrollbar-thumb {
-  background-color: var(--color-sutasoma-affair);
-  border-radius: 10px;
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
 }

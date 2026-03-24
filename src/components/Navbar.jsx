@@ -1,82 +1,60 @@
 import React, { useState } from 'react';
-import { Sun, Moon, Menu, X, Sparkles } from 'lucide-react';
+import { Sun, Moon, Menu, X, Code2 } from 'lucide-react';
 
 const Navbar = ({ isDarkMode, toggleTheme }) => {
-  // State untuk mengontrol menu mobile
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         
-        {/* Logo & Brand (Sekarang berfungsi sebagai tombol Home) */}
-        <a href="/" className="flex items-center space-x-3 group cursor-pointer">
-          <Sparkles className="text-sutasoma-jacarta dark:text-sutasoma-twine group-hover:scale-110 transition-transform duration-300" size={20} />
-          <span className="font-bold text-xl tracking-wide text-gray-900 dark:text-gray-100 group-hover:text-sutasoma-affair dark:group-hover:text-sutasoma-twine transition-colors">
-            Sutasoma Krisnanda
-          </span>
+        {/* Logo AKS dari portofolio */}
+        <a href="/" className="flex items-center gap-2 font-bold">
+          <Code2 className="h-6 w-6 text-accent" />
+          <span className="font-headline text-lg">AKS</span>
         </a>
 
-        {/* Desktop Navigation & Actions */}
-        <div className="hidden md:flex items-center gap-6">
-          <ul className="flex space-x-8 font-medium text-gray-600 dark:text-gray-300">
-            {/* Menu Home dihapus untuk UX yang lebih minimalis */}
-            <li><a href="/portofolio" className="hover:text-sutasoma-affair dark:hover:text-sutasoma-twine transition">Portofolio</a></li>
-            <li><a href="/tools" className="hover:text-sutasoma-affair dark:hover:text-sutasoma-twine transition">Tools</a></li>
-          </ul>
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-6 md:flex">
+          <a href="/portofolio" className="text-sm font-medium transition-colors hover:text-accent">Portofolio</a>
+          <a href="/text-case" className="text-sm font-medium transition-colors hover:text-accent">Tools</a>
+        </nav>
 
-          {/* Theme Toggle Button (Desktop) */}
+        <div className="flex items-center gap-2">
+          {/* Theme Toggle Button */}
           <button 
             onClick={toggleTheme} 
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 transition-colors"
-            title={isDarkMode ? "Ganti ke Mode Terang" : "Ganti ke Mode Gelap"}
+            className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground h-9 w-9"
           >
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
-        </div>
 
-        {/* Mobile Actions (Theme Toggle & Hamburger) */}
-        <div className="flex items-center gap-3 md:hidden">
-          <button 
-            onClick={toggleTheme} 
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 transition-colors"
-          >
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-          
-          <button 
-            onClick={toggleMobileMenu}
-            className="p-2 text-gray-700 dark:text-gray-300 hover:text-sutasoma-affair dark:hover:text-sutasoma-twine transition"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden">
+            <button 
+              onClick={() => setIsOpen(!isOpen)}
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 w-9"
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
-      <div 
-        className={`md:hidden absolute w-full bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 transition-all duration-300 ease-in-out origin-top ${
-          isMobileMenuOpen ? 'opacity-100 scale-y-100 visible' : 'opacity-0 scale-y-0 invisible'
-        }`}
-      >
-        <ul className="flex flex-col px-6 py-4 space-y-4 font-medium text-gray-600 dark:text-gray-300 shadow-lg">
-          <li>
-            <a href="/portofolio" className="block w-full hover:text-sutasoma-affair dark:hover:text-sutasoma-twine transition" onClick={() => setIsMobileMenuOpen(false)}>
-              Portofolio
-            </a>
-          </li>
-          <li>
-            <a href="/tools" className="block w-full hover:text-sutasoma-affair dark:hover:text-sutasoma-twine transition" onClick={() => setIsMobileMenuOpen(false)}>
-              Tools
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+      {/* Mobile Navigation Dropdown */}
+      {isOpen && (
+        <div className="md:hidden border-t border-border bg-background px-4 py-4 grid gap-4 shadow-lg absolute w-full">
+          <a href="/" className="flex items-center gap-2 font-bold" onClick={() => setIsOpen(false)}>
+            <Code2 className="h-6 w-6 text-accent" />
+            <span className="font-headline text-lg">AKS</span>
+          </a>
+          <nav className="grid gap-2 mt-2">
+            <a href="/portofolio" className="py-2 text-lg font-medium transition-colors hover:text-accent" onClick={() => setIsOpen(false)}>Portofolio</a>
+            <a href="/text-case" className="py-2 text-lg font-medium transition-colors hover:text-accent" onClick={() => setIsOpen(false)}>Tools</a>
+          </nav>
+        </div>
+      )}
+    </header>
   );
 };
 
